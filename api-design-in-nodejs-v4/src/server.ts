@@ -1,5 +1,5 @@
-const path = require("path");
-const express = require("express");
+import path from "path";
+import express from "express";
 
 const app = express();
 
@@ -12,4 +12,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve("pages/not-found.html"));
 });
 
-module.exports = app;
+export default app;
