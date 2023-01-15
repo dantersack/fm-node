@@ -1,15 +1,16 @@
-import path from "path";
-import express from "express";
+import express, { Express } from "express";
+import cors from "cors";
+import morgan from "morgan";
 
-const app = express();
+import router from "./router";
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve("pages/index.html"));
-});
+const app: Express = express();
 
-app.get("*", (req, res) => {
-  res.status(404);
-  res.sendFile(path.resolve("pages/not-found.html"));
-});
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", router);
 
 export default app;
