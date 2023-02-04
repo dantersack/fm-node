@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { comparePasswords, createToken, hashPassword } from "../auth";
+
 import prisma from "../db";
+import { comparePasswords, createToken, hashPassword } from "../auth";
 
 export const createNewUser = async (
   req: Request,
