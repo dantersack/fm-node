@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { Request, Response } from "express";
 
 import prisma from "../db";
@@ -18,7 +19,7 @@ export const createNewUser = async (
 
   const hash: string = await hashPassword(password);
 
-  const user = await prisma.user.create({
+  const user: User = await prisma.user.create({
     data: {
       username: username,
       password: hash,
@@ -40,7 +41,7 @@ export const signIn = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const user = await prisma.user.findUnique({
+  const user: User = await prisma.user.findUnique({
     where: { username: username },
   });
 
